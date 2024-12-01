@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NeuroWave - LearningAdventure</title>
+        <!-- Link to the external stylesheet -->
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
+<header>
+    <sec class="header">
+        <nav>
+            <ul>
+                <li><img src="img/justwordsRedGrid.png" alt="NeuroWave Logo" style="height: 80px; width: auto;"></li>
+                <!-- Navigation Links -->
+                <li><a href="index.html">Home</a></li>
+                <li><a href="adventures.html">Learning Adventures</a></li>
+                <li><a href="investors.html">Investors & Collaboration</a></li>
+            </ul>
+        </nav>
+    </sec>
+</header>
+
+<body>
+<section class="signup-form">
+    <h2>Stay Updated</h2>
+    <section class="signup-form">
+        <form id="signupForm" action="newsletter.html" method="POST">
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+            <span id="emailError" style="color: red; display: none;">Invalid email address!</span>
+            <button type="submit" class="cta-button">Sign Up</button>
+        </form>
+    </section>
+</section>
+<section class="hero">
+    <div class="hero-container">
+        <!-- Rotated Text -->
+        <p class="hero-text">Interactive Learning Awaits</p>
+        <!-- Button -->
+        <button class="cta-button" id="heroButton">Start Adventure</button>
+        <script>
+            document.getElementById("heroButton").addEventListener("click", () => {
+                const heroSection = document.querySelector(".hero");
+                heroSection.classList.add("active");
+            });
+        </script>
+        <!-- Hero Image -->
+        <img src="img/Lumina.png" alt="Hero Image" class="hero-image">
+
+    </div>
+
+
+    <div class="terminal-panel" id="terminalPanel">
+        <!-- Terminal Content -->
+        <pre class="terminal-output">
+            <img src="img/termiinal.png" alt="terminal placholder">
+        </pre>
+    </div>
+</section>
+
+
+<footer class="footer">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="investors.html">Investors & Collaboration</a></li>
+        <li><a href="adventures.html">Learning Adventures</a></li>
+    </ul>
+    <p class="footer-small-text">&copy; 2024 com.NorstarPhoenix.NeuroWave.SBA.307-308 All Rights Reserved.</p>
+</footer>
+</body>
+
+</html>
