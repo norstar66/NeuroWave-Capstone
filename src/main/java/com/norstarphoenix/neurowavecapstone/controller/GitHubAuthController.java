@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -62,5 +63,14 @@ public class GitHubAuthController {
 
         ResponseEntity<List> response = restTemplate.exchange(url, HttpMethod.GET, request, List.class);
         return response.getBody();
+    }
+    private final Map<String, String> tokenStore = new HashMap<>();
+
+    public void saveToken(String userId, String token) {
+        tokenStore.put(userId, token);
+    }
+
+    public String getToken(String userId) {
+        return tokenStore.get(userId);
     }
 }

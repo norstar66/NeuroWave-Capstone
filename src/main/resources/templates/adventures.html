@@ -26,6 +26,11 @@
     <section class="top-to-bottom-container">
         <!-- Button -->
         <button class="github-login-btn">Login with GitHub</button>
+        <script>
+            document.getElementById("login-button").addEventListener("click", () => {
+                window.location.href = "https://github.com/login/oauth/authorize?client_id=your_client_id&scope=repo,read:user";
+            });
+        </script>
 
         <!-- Image -->
         <div class="hero-image-wrapper">
