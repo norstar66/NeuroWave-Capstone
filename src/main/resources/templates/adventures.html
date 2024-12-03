@@ -1,75 +1,51 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>NeuroWave - LearningAdventure</title>
-        <!-- Link to the external stylesheet -->
-        <link rel="stylesheet" href="/static/css/styles.css">
-    </head>
+    <title>NeuroWave - Learning Adventure</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script defer src="/js/adventures.js"></script>
+</head>
+<body>
 <header>
-    <sec class="header">
+    <section class="header">
         <nav>
             <ul>
-                <li><img src="/static/img/justwordsRedGrid.png" alt="NeuroWave Logo" style="height: 80px; width: auto;"></li>
-                <!-- Navigation Links -->
-                <li><a href="index.html">Home</a></li>
-                <li><a href="adventures.html">Learning Adventures</a></li>
-                <li><a href="investors.html">Investors & Collaboration</a></li>
+                <li><img src="/img/justwordsRedGrid.png" alt="NeuroWave Logo" style="height: 80px; width: auto;"></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/adventures">Adventures</a></li>
+                <li><a href="/investors">Investors</a></li>
             </ul>
         </nav>
-    </sec>
+    </section>
 </header>
 
-<body>
-<section class="signup-form">
-    <h2>Stay Updated</h2>
-    <section class="signup-form">
-        <form id="signupForm" action="newsletter.html" method="POST">
-            <label for="email">Your Email:</label>
-            <input type="email" id="email" name="email" required>
-            <span id="emailError" style="color: red; display: none;">Invalid email address!</span>
-            <button type="submit" class="cta-button">Sign Up</button>
-        </form>
-    </section>
-</section>
-<section class="hero">
-    <div class="hero-container">
-        <!-- Rotated Text -->
-        <p class="hero-text">Interactive Learning Awaits</p>
+<main class="flex-container">
+    <h1>Login to Start Your Adventure</h1>
+    <section class="top-to-bottom-container">
         <!-- Button -->
-        <button class="cta-button" id="heroButton">Start Adventure</button>
-        <script>
-            document.getElementById("heroButton").addEventListener("click", () => {
-                const heroSection = document.querySelector(".hero");
-                heroSection.classList.add("active");
-            });
-        </script>
-        <!-- Hero Image -->
-        <img src="/static/img/Lumina.png" alt="Hero Image" class="hero-image">
+        <button class="github-login-btn">Login with GitHub</button>
 
-    </div>
+        <!-- Image -->
+        <div class="hero-image-wrapper">
+            <img src="/img/Lumina.png" alt="Hero Image" class="hero-image">
+        </div>
 
+        <!-- iframe -->
+        <iframe class="github-iframe" src="https://github.com/login/oauth/authorize"></iframe>
 
-    <div class="terminal-panel" id="terminalPanel">
-        <!-- Terminal Content -->
-        <pre class="terminal-output">
-            <img src="/static/img/terminal.png" alt="terminal placholder">
-        </pre>
-    </div>
-</section>
-
+    </section>
+</main>
 
 <footer class="footer">
     <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="investors.html">Investors & Collaboration</a></li>
-        <li><a href="adventures.html">Learning Adventures</a></li>
+
+        <li><a href="/">Home</a></li>
+        <li><a href="/adventures">Adventures</a></li>
+        <li><a href="/investors">Investors</a></li>
     </ul>
-    <p class="footer-small-text">&copy; 2024 com.NorstarPhoenix.NeuroWave.SBA.307-308 All Rights Reserved.</p>
+    <p class="footer-small-text">&copy; 2024 NeuroWave. All Rights Reserved.</p>
 </footer>
 </body>
-
 </html>

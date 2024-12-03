@@ -1,4 +1,47 @@
 /* General Styles */
+/* Reset and Global Styles */
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: dimgrey;
+    color: #fff;
+}
+
+/* Header and Footer Styles */
+.header, .footer {
+    background-color: #222;
+    color: #bbb;
+    padding: 20px;
+    text-align: center;
+    flex-shrink: 0; /* Prevents the header and footer from shrinking */
+}
+
+.header nav ul, .footer ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.header nav ul li, .footer ul li {
+    display: inline-block;
+}
+
+.header nav ul li a, .footer ul li a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.header nav ul li a:hover, .footer ul li a:hover {
+    color: #fff;
+}
 
 /* Set the global background color for the entire site */
 body {
@@ -123,6 +166,7 @@ body {
     margin: 20px; /* Margin to separate section visually */
     border-left: 5px solid #2c2a2a; /* Accent border to draw attention */
 }
+
 
 /* Footer Section Styles */
 /* Acts on all pages */

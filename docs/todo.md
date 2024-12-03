@@ -6,17 +6,20 @@
 - [ ] Complete architecture.md doc
 - [ ] User login and registration
 - [ ] Interactive dashboard
+- [ ] Integrate GitHub App
+- [ ] Upload lessons/Storyline
 
 ## Back-End
 - [ ] Implement user authentication
 - [ ] 🔑 Integrate GitHub OAuth for user authentication.
 - [ ] 🗄️ Finalize database schema and connect forms (Newsletter, Investor).
 - [ ] 🌟 Expand front-end features with dynamic content rendering.
-- [ ] 🤖 Add AI functionality to the Adventures page.
+- [x] 🤖 Add AI functionality to the Adventures page.
 - [x] Set up Spring Boot project
 - [x] Integrate .env for sensitive data
 - [ ] Add OAuth for GitHub App
 - [ ] Finalize database schema
+- [ ] Make YouTube Intro Video & Embed in adventures.html
 
 
 # ✅ **Capstone Project TO DO LIST**
