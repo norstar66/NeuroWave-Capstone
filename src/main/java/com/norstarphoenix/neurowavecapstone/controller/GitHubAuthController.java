@@ -1,59 +1,43 @@
 package com.norstarphoenix.neurowavecapstone.controller;
 
-import io.github.cdimascio.dotenv.Dotenv;
-import org.springframework.http.*;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/auth/github")
+@RequestMapping("/api")
 public class GitHubAuthController {
 
-    @GetMapping("/callback")
-    public ResponseEntity<String> handleGitHubCallback(@RequestParam String code) {
-        // Use the "code" to request an access token
-        String accessToken = exchangeCodeForToken(code);
-
-        // Save the token securely (e.g., in a session or database)
-        // For now, return it as plain text for testing
-        return ResponseEntity.ok("Access Token: " + accessToken);
-    }
-
-    private final Dotenv dotenv = Dotenv.load();
-
-    private String exchangeCodeForToken(String code) {
-        RestTemplate restTemplate = new RestTemplate();
-        String url = "https://github.com/login/oauth/access_token";
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-
-        MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("client_id", System.getenv("GITHUB_CLIENT_ID"));
-        body.add("client_secret", System.getenv("GITHUB_CLIENT_SECRET"));
-        body.add("code", code);
-        body.add("redirect_uri", "http://localhost:8080/auth/github/callback");
-
-        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(body, headers);
-        ResponseEntity<Map> response = restTemplate.postForEntity(url, request, Map.class);
-
-        return (String) response.getBody().get("access_token");
+    @GetMapping("/user")
+    public ResponseEntity<Map<String, Object>> getUserDetails(
+            @AuthenticationPrincipal OAuth2User oAuth2User) {
+        return ResponseEntity.ok(oAuth2User.getAttributes()); // Return user details
     }
 
     @GetMapping("/codespaces")
-    public ResponseEntity<List<Map<String, Object>>> getUserCodespaces(@RequestParam String accessToken) {
-        List<Map<String, Object>> codespaces = fetchUserCodespaces(accessToken);
+    public ResponseEntity<Object> getUserCodespaces(
+            @RegisteredOAuth2AuthorizedClient("github") OAuth2AuthorizedClient authorizedClient) {
+
+        // Access token for GitHub API
+        String accessToken = authorizedClient.getAccessToken().getTokenValue();
+
+        // Fetch codespaces data from GitHub API
+        Map<String, Object> codespaces = fetchGitHubCodespaces(accessToken);
         return ResponseEntity.ok(codespaces);
     }
 
-    private List<Map<String, Object>> fetchUserCodespaces(String accessToken) {
+    private Map<String, Object> fetchGitHubCodespaces(String accessToken) {
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://api.github.com/user/codespaces";
 
@@ -61,16 +45,7 @@ public class GitHubAuthController {
         headers.set("Authorization", "Bearer " + accessToken);
         HttpEntity<Void> request = new HttpEntity<>(headers);
 
-        ResponseEntity<List> response = restTemplate.exchange(url, HttpMethod.GET, request, List.class);
+        ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.GET, request, Map.class);
         return response.getBody();
-    }
-    private final Map<String, String> tokenStore = new HashMap<>();
-
-    public void saveToken(String userId, String token) {
-        tokenStore.put(userId, token);
-    }
-
-    public String getToken(String userId) {
-        return tokenStore.get(userId);
     }
 }

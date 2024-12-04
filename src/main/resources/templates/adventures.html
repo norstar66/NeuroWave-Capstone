@@ -28,7 +28,7 @@
         <button class="github-login-btn">Login with GitHub</button>
         <script>
             document.getElementById("login-button").addEventListener("click", () => {
-                window.location.href = "https://github.com/login/oauth/authorize?client_id=your_client_id&scope=repo,read:user";
+                window.location.href = "/oauth2/authorization/github";
             });
         </script>
 
@@ -38,7 +38,12 @@
         </div>
 
         <!-- iframe -->
-        <iframe class="github-iframe" src="https://github.com/login/oauth/authorize"></iframe>
+        <iframe
+                src="http://localhost:8080/oauth2/authorization/github"
+                width="100%"
+                height="600px"
+                style="border: none;"
+        ></iframe>
 
     </section>
 </main>
