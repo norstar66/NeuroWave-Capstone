@@ -11,12 +11,15 @@ import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
 
-@Bean
-public GitHubAppJwt gitHubAppJwt() {
-    String appId = System.getenv("GITHUB_APP_ID");
-    String privateKey = System.getenv("GITHUB_PRIVATE_KEY");
-    return new GitHubAppJwt(appId, privateKey);
-}
+public class GitHubAppJwt {
+
+    private final String appId;
+    private final String privateKeyPem;
+
+    public GitHubAppJwt(String appId, String privateKeyPem) {
+        this.appId = appId;
+        this.privateKeyPem = privateKeyPem;
+    }
 
     public String generateJwt() throws Exception {
         byte[] keyBytes = Base64.getDecoder().decode(privateKeyPem);
@@ -31,5 +34,12 @@ public GitHubAppJwt gitHubAppJwt() {
                 .setExpiration(Date.from(now.plusSeconds(600))) // 10 minutes
                 .signWith(privateKey, SignatureAlgorithm.RS256)
                 .compact();
+    }
+
+    @Bean
+    public GitHubAppJwt gitHubAppJwt() {
+        String appId = System.getenv("GITHUB_APP_ID");
+        String privateKey = System.getenv("GITHUB_PRIVATE_KEY");
+        return new GitHubAppJwt(appId, privateKey);
     }
 }
