@@ -135,3 +135,50 @@ NeuroWave-CAP312/
 
     </div>
 </div>
+
+---
+
+🚀 Resolving MySQL Dependency Issues
+🛑 Problem
+While configuring the mysql-connector-java dependency in pom.xml, the artifact was not resolving correctly due to a change in Maven artifact coordinates.
+
+✅ Solution
+The correct dependency coordinates for the latest stable version are as follows:
+
+```xml
+<dependency>
+    <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+    <scope>runtime</scope>
+    <version>8.1.0</version>
+</dependency>
+```
+
+📝 Key Steps
+🔍 Identify the Issue:
+
+Error logs showed the dependency mysql:mysql-connector-java was missing.
+Research revealed the artifact had been moved to com.mysql.
+🔧 Correct the Dependency:
+
+Updated the pom.xml with the new group ID and artifact ID.
+🛠 Verify Settings:
+
+Ensured settings.xml was configured correctly, with no proxy or mirror blocking access to Maven Central.
+🔄 Rebuild the Project:
+
+Used the following commands to refresh and rebuild:
+```bash
+mvn clean install
+mvn dependency:purge-local-repository
+mvn dependency:resolve
+```
+🎉 Success:
+
+The issue was resolved, and the application successfully connected to MySQL.
+💡 Lessons Learned
+💡 Always check for updated dependency coordinates when an artifact fails to resolve.
+🌐 The Maven Repository website (mvnrepository.com) is an excellent resource for verifying dependencies.
+🛡 Keeping your settings.xml file correctly configured is crucial to avoid unnecessary issues.
+💡 Pro Tip
+Documenting your fixes not only helps you in the future but also makes your project README much more valuable for collaborators! 🙌
