@@ -3,30 +3,23 @@ package com.norstarphoenix.neurowavecapstone.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
-@Setter
 @Getter
+@Setter
 @Entity
 public class User {
-    // Getters and Setters
-    @Setter
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Setter
-    private String username;
-    @Setter
-    private String token;
-    @jakarta.persistence.Id
-    private Long user_id;
+    private Long id; // Primary key for the User entity
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public void setUser_id(Long userId) {
-        this.user_id = userId;
-    }
+    @NotNull
+    @Size(min = 3, max = 50)
+    private String username; // User's name
 
-
+    @Transient
+    private String token; // Authentication or session token
 }
