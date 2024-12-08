@@ -1,5 +1,9 @@
 package com.norstarphoenix.neurowavecapstone.models;
 
+import jakarta.persistence.Transient;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +14,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(name="users")
+
 public class User {
 
     @Id
@@ -25,4 +31,8 @@ public class User {
 
     @Column(nullable = false)
     private String passwordHash; // Encrypted password stored
-}
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+
+    }
