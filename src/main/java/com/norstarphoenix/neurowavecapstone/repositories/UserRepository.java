@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
 
-@SpringBootApplication
+
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
 }

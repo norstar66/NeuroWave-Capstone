@@ -22,4 +22,7 @@ public class User {
 
     @Transient
     private String token; // Authentication or session token
+
+    @Column(nullable = false)
+    private String passwordHash; // Encrypted password stored
 }
