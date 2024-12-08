@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<<<<<<< Updated upstream
     <title>Login</title>
 </head>
 <body>
@@ -15,5 +16,50 @@
     <button type="submit">Login</button>
 </form>
 <p th:if="${error}" th:text="${error}"></p>
+=======
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - NeuroWave</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script defer src="/static/js/validation.js"></script>
+</head>
+<body>
+<header>
+    <section class="header">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/adventures">Adventures</a></li>
+                <li><a href="/investors">Investors</a></li>
+            </ul>
+        </nav>
+    </section>
+</header>
+
+<main class="flex-container">
+    <h1>Login to NeuroWave</h1>
+    <form id="loginForm" action="/auth/login" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        <p id="emailError" class="error-message" style="display: none;">Invalid email address</p>
+
+        <button type="submit" class="cta-button">Login</button>
+    </form>
+    <p>Or <a href="/oauth2/authorization/github">Login with GitHub</a></p>
+</main>
+
+<footer class="footer">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/adventures">Adventures</a></li>
+        <li><a href="/investors">Investors</a></li>
+    </ul>
+    <p class="footer-small-text">&copy; 2024 NeuroWave. All Rights Reserved.</p>
+</footer>
+>>>>>>> Stashed changes
 </body>
 </html>

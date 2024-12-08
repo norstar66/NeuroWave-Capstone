@@ -1,15 +1,23 @@
 package com.norstarphoenix.neurowavecapstone.serviceTests;
 
-import com.norstarphoenix.neurowavecapstone.config.GitHubAppJwt;
-import com.norstarphoenix.neurowavecapstone.services.GitHubApiService;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.http.*;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.Test;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
+
+import com.norstarphoenix.neurowavecapstone.config.GitHubAppJwt;
+import com.norstarphoenix.neurowavecapstone.services.GitHubApiService;
 
 class GitHubApiServiceTest {
 

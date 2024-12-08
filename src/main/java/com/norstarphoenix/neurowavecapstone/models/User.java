@@ -14,25 +14,31 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="users")
-
+@Table(name = "users")
+@ToString(onlyExplicitlyIncluded = true)
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Primary key for the User entity
+    @ToString.Include
+    private Long id;
 
-    @NotNull
-    @Size(min = 3, max = 50)
-    private String username; // User's name
+    @Column(nullable = false, unique = true)
+    @ToString.Include
+    private String username;
 
-    @Transient
-    private String token; // Authentication or session token
+    @Column(nullable = false, unique = true)
+    private String email;
 
     @Column(nullable = false)
-    private String passwordHash; // Encrypted password stored
+    private String passwordHash;
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-
-    }
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_groups",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id")
+    )
+    @ToString.Exclude
+    private Set<Group> groups;
+}
